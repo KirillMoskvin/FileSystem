@@ -1,19 +1,21 @@
-package hello;
+package files;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
-import javafx.collections.transformation.FilteredList;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
 @RestController
-public class GreetingController {
+public class FileController {
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
@@ -23,13 +25,13 @@ public class GreetingController {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/root", method = RequestMethod.GET)
     public File fileSystemRoot(){
         return new File("");
     }
 
     @RequestMapping(value = "/showall", method = RequestMethod.GET)
-    public FilesWrapper fileSystemShowAll(){
+    public FilesWrapper fileSystemShowAll() {
 
         File file = new File("src");
         File[] arrF = file.listFiles();
@@ -37,5 +39,8 @@ public class GreetingController {
         FilesWrapper res = new FilesWrapper(files);
         return res;
     }
+
+    @RequestMapping(value="/getfiles", method = RequestMethod.GET)
+    
 
 }
