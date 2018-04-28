@@ -1,6 +1,7 @@
 package files;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -20,11 +21,6 @@ public class FileController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping(value = "/greeting", method = RequestMethod.GET)
-    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name){
-        return new Greeting(counter.incrementAndGet(), String.format(template, name));
-    }
-
     @RequestMapping(value = "/root", method = RequestMethod.GET)
     public File fileSystemRoot(){
         return new File("");
@@ -41,6 +37,8 @@ public class FileController {
     }
 
     @RequestMapping(value="/getfiles", method = RequestMethod.GET)
-    
+    public FileInformation getFiles(@RequestParam(value = "filePath", defaultValue="") String path) throws IOException{
+        return new FileInformation(path);
+    }
 
 }

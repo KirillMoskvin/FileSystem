@@ -11,6 +11,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.DosFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FileInformation {
@@ -20,6 +21,10 @@ public class FileInformation {
     public FileInformation(String filePath) throws IOException{
         Path file = Paths.get(filePath);
         fileInfo = Files.readAttributes(file,BasicFileAttributes.class);
+        long sz = fileInfo.size();
+        FileTime ft = fileInfo.creationTime();
+        FileTime ft2 = fileInfo.lastModifiedTime();
+        boolean isd = fileInfo.isDirectory();
     }
 
     //Размер файла
@@ -27,17 +32,15 @@ public class FileInformation {
         return fileInfo.size();
     }
     //Дата создания
-    public FileTime getCreationDate(){
-        return fileInfo.creationTime();
+    public Date getCreationDate(){
+        return  new Date(fileInfo.creationTime().toMillis());
     }
     //Дата последнего изменения
-    public FileTime getModificationDate(){
-        return fileInfo.lastModifiedTime();
+    public Date getModificationDate(){
+        return new Date(fileInfo.lastModifiedTime().toMillis());
     }
     //Является ли файл директорией
     public boolean isDirectory(){
         return fileInfo.isDirectory();
     }
-
-
 }
