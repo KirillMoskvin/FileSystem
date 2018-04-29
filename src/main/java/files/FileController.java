@@ -1,44 +1,56 @@
 package files;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
+import java.io.*;
+import java.nio.file.AccessDeniedException;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-
 @RestController
 public class FileController {
-
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
-
-    @RequestMapping(value = "/root", method = RequestMethod.GET)
-    public File fileSystemRoot(){
-        return new File("");
+    //путь к конфигурационному файлу
+    private static final String cfgFilePath="config.cfg";
+    //корень файловой системы
+    private static String root;
+    static {
+        try(BufferedReader reader = new BufferedReader(new FileReader(cfgFilePath)))
+        {
+            root = reader.readLine();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    //доступ к корню файловой системы
     @RequestMapping(value = "/showall", method = RequestMethod.GET)
-    public FilesWrapper fileSystemShowAll() {
+    public FilesModel fileSystemShowAll() throws IOException{
+        return new FilesModel(root);
+    }
 
-        File file = new File("src");
-        File[] arrF = file.listFiles();
-        List<File> files = Arrays.asList(file.listFiles());
-        FilesWrapper res = new FilesWrapper(files);
-        return res;
+    //доступ к корню файловой системы
+    @RequestMapping(value = "/q", method = RequestMethod.GET)
+    public String q() {
+        return "q";
     }
 
     @RequestMapping(value="/getfiles", method = RequestMethod.GET)
-    public FileInformation getFiles(@RequestParam(value = "filePath", defaultValue="") String path) throws IOException{
-        return new FileInformation(path);
+    public FileModel getFiles(@RequestParam(value = "filePath", defaultValue="") String path) throws IOException{
+        if (checkAccess(path))
+            return new FileModel(path);
+        else
+            throw new AccessDeniedException("Required File is not in file system");
     }
 
+    //проверка, ведёт ли файл в нашу файловую систему
+    protected boolean checkAccess(String path){
+        if (path.startsWith(root))
+            return true;
+        return false;
+    }
 }

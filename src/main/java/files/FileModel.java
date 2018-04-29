@@ -14,19 +14,25 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class FileInformation {
+public class FileModel {
     //информация о файле
     private BasicFileAttributes fileInfo;
+    //путь к файлу
+    Path path;
 
-    public FileInformation(String filePath) throws IOException{
-        Path file = Paths.get(filePath);
-        fileInfo = Files.readAttributes(file,BasicFileAttributes.class);
+    public FileModel(String filePath) throws IOException{
+        path = Paths.get(filePath);
+        fileInfo = Files.readAttributes(path,BasicFileAttributes.class);
         long sz = fileInfo.size();
         FileTime ft = fileInfo.creationTime();
         FileTime ft2 = fileInfo.lastModifiedTime();
         boolean isd = fileInfo.isDirectory();
     }
 
+    //Имя файла
+    public String getName(){
+        return path.getFileName().toString();
+    }
     //Размер файла
     public long getFileSize(){
         return fileInfo.size();

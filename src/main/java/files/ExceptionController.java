@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -17,5 +18,10 @@ public class ExceptionController {
     @ExceptionHandler(IOException.class)
     public ResponseEntity<String> handle(HttpServletRequest request) {
         return new ResponseEntity<>("no such file", HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<String> handleAccessDeniedException (HttpServletRequest request) {
+        return new ResponseEntity<>("Access denied", HttpStatus.BAD_REQUEST);
     }
 }
