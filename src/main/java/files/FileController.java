@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.file.AccessDeniedException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.SplittableRandom;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,11 +34,6 @@ public class FileController {
         return new FilesModel(root);
     }
 
-    //доступ к корню файловой системы
-    @RequestMapping(value = "/q", method = RequestMethod.GET)
-    public String q() {
-        return "q";
-    }
 
     @RequestMapping(value="/getfiles", method = RequestMethod.GET)
     public FileModel getFiles(@RequestParam(value = "filePath", defaultValue="") String path) throws IOException{
@@ -46,6 +42,12 @@ public class FileController {
         else
             throw new AccessDeniedException("Required File is not in file system");
     }
+
+    @RequestMapping(value = "/gettextfromfile", method = RequestMethod.GET)
+    public TextFileModel getTextFromFile(@RequestParam(value = "fileName") String fileName) throws IOException{
+        return new TextFileModel(fileName);
+    }
+
 
     //проверка, ведёт ли файл в нашу файловую систему
     protected boolean checkAccess(String path){

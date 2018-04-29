@@ -49,4 +49,19 @@ public class FileModel {
     public boolean isDirectory(){
         return fileInfo.isDirectory();
     }
+    //Является ли файл текстовым
+    public boolean isText(){
+        String extension ="";
+        String name = this.getName();
+        int i = name.lastIndexOf('.');
+        if (i > 0) {
+            extension = name.substring(i + 1);
+        }
+        return extension.equals("txt");
+    }
+    //Абсолютный путь к файлу
+    public String getAbsolutePath(){
+        return path.toAbsolutePath().toString();
+    }
+
 }

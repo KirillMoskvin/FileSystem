@@ -3,3 +3,8 @@
     border-collapse: collapse;
 
 }
+
+.showText:hover {
+    background-color: red;
+    cursor: pointer;
+}
