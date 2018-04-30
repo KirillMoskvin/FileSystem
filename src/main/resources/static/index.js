@@ -7,8 +7,8 @@ $(document).ready(function() {
         var rows = "";
         //заполнение данных о файлах
         $.each(data.files, function (index, obj) {
-            rows += "<tr><td>"+
-                (data.files[index].directory? "yes" : "no") + "</td><td>" +
+            rows += "<tr><td"+
+                (data.files[index].directory? "value ='" + data.files[index].absolutePath +  ">yes" : "no") + "</td><td>" +
                 data.files[index].name + "</td><td>"+
                 convertFileSize(data.files[index].fileSize) + "</td><td>"+
                 new Date(data.files[index].creationDate).toLocaleString() + "</td><td>"+

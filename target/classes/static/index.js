@@ -19,13 +19,12 @@ $(document).ready(function() {
                 rows +="<td>&nbsp;</td>"
             rows += "</tr>"
         });
-
-       // $("#files tbody").append(rows);
         $(rows).appendTo(".files tbody");
 
+        //Отправляем по клику запрос для текстовых файлов
         var list = document.querySelectorAll(".showText");
-        console.log(list);
-      //  console.log(list.length);
+        // console.log(list);
+        //  console.log(list.length);
         for(var i=0; i<list.length; i++) {
             list[i].onclick=getTextFromFile;
         }
