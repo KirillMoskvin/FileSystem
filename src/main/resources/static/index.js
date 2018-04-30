@@ -7,10 +7,12 @@ $(document).ready(function() {
         var rows = "";
         //заполнение данных о файлах
         $.each(data.files, function (index, obj) {
-            rows += "<tr><td"+
-                (data.files[index].directory? "value ='" + data.files[index].absolutePath +  ">yes" : "no") + "</td><td>" +
-                data.files[index].name + "</td><td>"+
-                convertFileSize(data.files[index].fileSize) + "</td><td>"+
+            rows += "<tr><td> "+
+                (data.files[index].directory?  "yes" : "no") + "</td><td "+
+
+                (data.files[index].directory? " class='directory' value='"+data.files[index].absolutePath+"'": "") +
+                ">"+ data.files[index].name +"</td>"+
+                "<td>"+ convertFileSize(data.files[index].fileSize) + "</td><td>"+
                 new Date(data.files[index].creationDate).toLocaleString() + "</td><td>"+
                 new Date(data.files[index].modificationDate).toLocaleString() + "</td>+";
             if (data.files[index].text)
@@ -19,16 +21,22 @@ $(document).ready(function() {
                 rows +="<td>&nbsp;</td>"
             rows += "</tr>"
         });
+
         $(rows).appendTo(".files tbody");
 
         //Отправляем по клику запрос для текстовых файлов
-        var list = document.querySelectorAll(".showText");
-        // console.log(list);
-        //  console.log(list.length);
-        for(var i=0; i<list.length; i++) {
-            list[i].onclick=getTextFromFile;
+        var listText = document.querySelectorAll(".showText");
+        // console.log(listText);
+        //  console.log(listText.length);
+        for(var i=0; i<listText.length; i++) {
+            listText[i].onclick=getTextFromFile;
         }
-        console.log(list);
+        console.log(listText);
+
+        var listDirs = document.querySelectorAll(".directory");
+        for (var i=0; i<listDirs.length; i++){
+            listDirs[i].onclick=getFilesFromDir;
+        }
 
     });
 });
@@ -65,4 +73,54 @@ function getTextFromFile() {
         console.log(value);
         alert(value.content);
     })
+}
+
+function getFilesFromDir() {
+    var filename = this.getAttribute("value");
+    var dataToSend = {"filePath": filename}
+    $.ajax({
+        url: "http://localhost:8080/getfiles",
+        type:'GET',
+        data: dataToSend,
+
+        error: function (error) {
+            console.log(error);
+        }
+    }).then(function(data) {
+        console.log(data);
+        var rows = "";
+        //заполнение данных о файлах
+        $.each(data.files, function (index, obj) {
+            rows += "<tr><td> "+
+                (data.files[index].directory?  "yes" : "no") + "</td><td "+
+
+                (data.files[index].directory? " class='directory' value='"+data.files[index].absolutePath+"'": "") +
+                ">"+ data.files[index].name +"</td>"+
+                "<td>"+ convertFileSize(data.files[index].fileSize) + "</td><td>"+
+                new Date(data.files[index].creationDate).toLocaleString() + "</td><td>"+
+                new Date(data.files[index].modificationDate).toLocaleString() + "</td>+";
+            if (data.files[index].text)
+                rows+="<td><div class='showText' value='" + data.files[index].absolutePath + "'>show</div></td>";
+            else
+                rows +="<td>&nbsp;</td>"
+            rows += "</tr>"
+        });
+
+        $(".files tbody").replaceWith(rows);
+
+        //Отправляем по клику запрос для текстовых файлов
+        var listText = document.querySelectorAll(".showText");
+        // console.log(listText);
+        //  console.log(listText.length);
+        for(var i=0; i<listText.length; i++) {
+            listText[i].onclick=getTextFromFile;
+        }
+        console.log(listText);
+
+        var listDirs = document.querySelectorAll(".directory");
+        for (var i=0; i<listDirs.length; i++){
+            listDirs[i].onclick=getFilesFromDir;
+        }
+
+    });
 }

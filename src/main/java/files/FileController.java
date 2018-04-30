@@ -18,6 +18,8 @@ public class FileController {
     private static final String cfgFilePath="config.cfg";
     //корень файловой системы
     private static String root;
+    private static Path rootPath;
+
     static {
         try(BufferedReader reader = new BufferedReader(new FileReader(cfgFilePath)))
         {
@@ -27,6 +29,7 @@ public class FileController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        rootPath = Paths.get(root);
     }
 
     //доступ к корню файловой системы
@@ -36,9 +39,9 @@ public class FileController {
     }
     //получение файлов по заданному пути
     @RequestMapping(value="/getfiles", method = RequestMethod.GET)
-    public FileModel getFiles(@RequestParam(value = "filePath", defaultValue="") String path) throws IOException{
+    public FilesModel getFiles(@RequestParam(value = "filePath", defaultValue="") String path) throws IOException{
         if (checkAccess(path))
-            return new FileModel(path);
+            return new FilesModel(path);
         else
             throw new AccessDeniedException("Required File is not in file system");
     }
@@ -134,8 +137,16 @@ public class FileController {
 
     //проверка, ведёт ли файл в нашу файловую систему
     protected boolean checkAccess(String path){
-        if (path.startsWith(root))
-            return true;
+        try {
+            Path requiredPath = Paths.get(path);
+            if (requiredPath.equals(rootPath.toAbsolutePath()) || requiredPath.startsWith(rootPath.toAbsolutePath()))
+                return true;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
         return false;
     }
 }
