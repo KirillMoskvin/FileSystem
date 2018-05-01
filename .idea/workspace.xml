@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a2e8a1cb-9453-4d04-8c08-2d95249bcce0" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/files/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/files/FileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/files/FilesModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/files/FilesModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/files/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/files/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/files/ExceptionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/files/ExceptionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/files/FileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/files/FileController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/files/FileModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/files/FileModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/files/FilesModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/files/FilesModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/files/TextFileModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/files/TextFileModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/style.css" afterDir="false" />
-    </list>
+    <list default="true" id="a2e8a1cb-9453-4d04-8c08-2d95249bcce0" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -320,7 +304,7 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="files.*" />
+          <option name="PATTERN" value="files.models.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -386,12 +370,12 @@
       <workItem from="1524917310433" duration="28643000" />
       <workItem from="1524997771057" duration="20978000" />
       <workItem from="1525112980583" duration="12462000" />
-      <workItem from="1525164410125" duration="8751000" />
+      <workItem from="1525164410125" duration="9360000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73015000" />
+    <option name="totallyTimeSpent" value="73624000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

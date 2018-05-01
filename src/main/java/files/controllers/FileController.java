@@ -1,12 +1,10 @@
-package files;
+package files.controllers;
 
 import java.io.*;
 import java.nio.file.*;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.SplittableRandom;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
+import files.models.FilesModel;
+import files.models.TextFileModel;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
