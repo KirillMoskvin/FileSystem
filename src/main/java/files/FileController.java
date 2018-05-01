@@ -35,7 +35,7 @@ public class FileController {
     //доступ к корню файловой системы
     @RequestMapping(value = "/showall", method = RequestMethod.GET)
     public FilesModel fileSystemShowAll() throws IOException{
-        return new FilesModel(root);
+        return getFiles(root);
     }
     //получение файлов по заданному пути
     @RequestMapping(value="/getfiles", method = RequestMethod.GET)
@@ -138,7 +138,7 @@ public class FileController {
     //проверка, ведёт ли файл в нашу файловую систему
     protected boolean checkAccess(String path){
         try {
-            Path requiredPath = Paths.get(path);
+            Path requiredPath = Paths.get(path).toAbsolutePath();
             if (requiredPath.equals(rootPath.toAbsolutePath()) || requiredPath.startsWith(rootPath.toAbsolutePath()))
                 return true;
         }

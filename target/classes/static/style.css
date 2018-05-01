@@ -4,7 +4,13 @@
 
 }
 
-.showText:hover {
-    background-color: red;
+.showText:hover, .directory:hover {
     cursor: pointer;
+}
+
+.directory, .showText{
+    cursor: pointer;
+    text-decoration: underline;
+    text-color: blue;
+    color: blue;
 }
