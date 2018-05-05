@@ -11,23 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class FileController {
+public class FileController  {
     //путь к конфигурационному файлу
     private static final String cfgFilePath="config.cfg";
     //корень файловой системы
     private static String root;
     private static Path rootPath;
 
-    static {
-        try(BufferedReader reader = new BufferedReader(new FileReader(cfgFilePath)))
-        {
-            root = reader.readLine();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        rootPath = Paths.get(root);
+    public FileController() throws IOException{
+        rootPath = init();
     }
 
     //доступ к корню файловой системы
@@ -88,20 +80,14 @@ public class FileController {
         if (checkAccess(fileName) && checkAccess(destPath)) {
             File sourceFile = new File(fileName);
             File destFile = new File(destPath);
-
-            try {
-                if (!sourceFile.isDirectory())
-                    Files.copy(sourceFile.toPath(), destFile.toPath());
-                else {
-                    destFile.mkdir();
-                    for (File file : sourceFile.listFiles())
-                        Files.copy(file.toPath(), destFile.toPath());
-                }
-                return "Success";
+            if (!sourceFile.isDirectory())
+                Files.copy(sourceFile.toPath(), destFile.toPath());
+            else {
+                destFile.mkdir();
+                for (File file : sourceFile.listFiles())
+                    Files.copy(file.toPath(), destFile.toPath());
             }
-            catch (IOException e){
-                return "Error";
-            }
+            return "Success";
         }
         else
             throw new AccessDeniedException("Required file is not in file system");
@@ -134,17 +120,16 @@ public class FileController {
 
 
     //проверка, ведёт ли файл в нашу файловую систему
-    protected boolean checkAccess(String path){
-        try {
-            Path requiredPath = Paths.get(path).toAbsolutePath();
-            if (requiredPath.equals(rootPath.toAbsolutePath()) || requiredPath.startsWith(rootPath.toAbsolutePath()))
-                return true;
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
+    protected boolean checkAccess(String path) throws IOException{
+        Path requiredPath = Paths.get(path).toAbsolutePath();
+        if (requiredPath.equals(rootPath.toAbsolutePath()) || requiredPath.startsWith(rootPath.toAbsolutePath()))
+            return true;
         return false;
+    }
+
+    protected static Path init () throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(cfgFilePath))
+        root = reader.readLine();
+        return Paths.get(root);
     }
 }
