@@ -1,10 +1,10 @@
-package files.controllers;
+package ru.moskvin.files.controllers;
 
 import java.io.*;
 import java.nio.file.*;
 
-import files.models.FilesModel;
-import files.models.TextFileModel;
+import ru.moskvin.files.models.FilesModel;
+import ru.moskvin.files.models.TextFileModel;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -128,7 +128,7 @@ public class FileController  {
     }
 
     protected static Path init () throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(cfgFilePath))
+        BufferedReader reader = new BufferedReader(new FileReader(cfgFilePath));
         root = reader.readLine();
         return Paths.get(root);
     }

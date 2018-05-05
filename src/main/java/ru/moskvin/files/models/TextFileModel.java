@@ -1,4 +1,4 @@
-package files.models;
+package ru.moskvin.files.models;
 
 import java.io.IOException;
 import java.nio.file.Files;
