@@ -27,6 +27,7 @@ public class FileController  {
     public FilesModel fileSystemShowAll() throws IOException{
         return getFiles(root);
     }
+
     //получение файлов по заданному пути
     @RequestMapping(value="/getfiles", method = RequestMethod.GET)
     public FilesModel getFiles(@RequestParam(value = "filePath", defaultValue="") String path) throws IOException{
@@ -42,34 +43,25 @@ public class FileController  {
     }
     //удаление файла из файловой системы
     @RequestMapping(value = "/deletefile", method = RequestMethod.DELETE)
-    public String deleteFileOrDirectory(@RequestParam(value = "fileName") String fileName) throws IOException{
+    public String deleteFileOrDirectory(@RequestParam(value = "fileName") String fileName) throws Exception {
         if (checkAccess(fileName)) {
-            if (Files.exists(Paths.get(fileName))) {
-                Files.delete(Paths.get(fileName));
-                return "success";
-            }
+            if (FileActionsService.deleteFile(fileName))
+                return "Success";
             else
-                throw new FileNotFoundException();
+                return "File does not exist";
         }
         else
-            throw new AccessDeniedException("Required File is not in file system");
+            return "Error, access denied";
     }
 
     @RequestMapping(value = "/renamefile", method = RequestMethod.POST)
     public String renameFileOrDirectory(@RequestParam(value = "fileName") String fileName,
                                         @RequestParam(value = "newFileName") String newFileName) throws IOException{
-        if (checkAccess(fileName)) {
-            File oldFile = new File(fileName);
-            File newFile = new File(newFileName);
-            if (newFile.exists()) {
-                throw new FileAlreadyExistsException("File Already Exists");
-            }
-
-            if (oldFile.renameTo(newFile))
+        if (checkAccess(fileName))
+            if (FileActionsService.renameFile(fileName,newFileName))
                 return "Success";
             else
-                return "Renaming error";
-            }
+                return "Error, file with this name already exists";
         else
             throw new AccessDeniedException("Required File is not in file system");
     }
@@ -78,16 +70,8 @@ public class FileController  {
     public String copyFileOrDirectory(@RequestParam(value = "fileName") String fileName,
                                       @RequestParam(value = "destPath") String destPath) throws IOException {
         if (checkAccess(fileName) && checkAccess(destPath)) {
-            File sourceFile = new File(fileName);
-            File destFile = new File(destPath);
-            if (!sourceFile.isDirectory())
-                Files.copy(sourceFile.toPath(), destFile.toPath());
-            else {
-                destFile.mkdir();
-                for (File file : sourceFile.listFiles())
-                    Files.copy(file.toPath(), destFile.toPath());
-            }
-            return "Success";
+            FileActionsService.copyFile(fileName,destPath);
+            return "Succeess";
         }
         else
             throw new AccessDeniedException("Required file is not in file system");
@@ -97,22 +81,8 @@ public class FileController  {
     public String moveFileOrDirectory(@RequestParam(value = "fileName") String fileName,
                                       @RequestParam(value = "destPath") String destPath) throws IOException {
         if (checkAccess(fileName) && checkAccess(destPath)) {
-            File sourceFile = new File(fileName);
-            File destFile = new File(destPath);
 
-            try {
-                if (!sourceFile.isDirectory())
-                    Files.move(sourceFile.toPath(), destFile.toPath());
-                else {
-                    destFile.mkdir();
-                    for (File file : sourceFile.listFiles())
-                        Files.move(file.toPath(), destFile.toPath());
-                }
-                return "Success";
-            }
-            catch (IOException e){
-                return "Error";
-            }
+            return "Success";
         }
         else
             throw new AccessDeniedException("Required file is not in file system");
