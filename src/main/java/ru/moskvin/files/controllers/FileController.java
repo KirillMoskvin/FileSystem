@@ -3,12 +3,13 @@ package ru.moskvin.files.controllers;
 import java.io.*;
 import java.nio.file.*;
 
+import org.springframework.util.AntPathMatcher;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.HandlerMapping;
 import ru.moskvin.files.models.FilesModel;
 import ru.moskvin.files.models.TextFileModel;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class FileController  {
@@ -17,6 +18,7 @@ public class FileController  {
     //корень файловой системы
     private static String root;
     private static Path rootPath;
+
 
     public FileController() throws IOException{
         rootPath = init();
@@ -81,13 +83,21 @@ public class FileController  {
     public String moveFileOrDirectory(@RequestParam(value = "fileName") String fileName,
                                       @RequestParam(value = "destPath") String destPath) throws IOException {
         if (checkAccess(fileName) && checkAccess(destPath)) {
-
             return "Success";
         }
         else
             throw new AccessDeniedException("Required file is not in file system");
     }
 
+    @RequestMapping(value = "/files/**", method = RequestMethod.GET)
+    public FilesModel getSomeFiles(HttpServletRequest request)
+            throws IOException {
+        //достаём путь из запроса
+       //String path = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
+        String path = new AntPathMatcher().extractPathWithinPattern( "/files/**", request.getRequestURI() );
+        path = path.replace("%20", " ");
+        return getFiles(path);
+    }
 
     //проверка, ведёт ли файл в нашу файловую систему
     protected boolean checkAccess(String path) throws IOException{
@@ -103,3 +113,4 @@ public class FileController  {
         return Paths.get(root);
     }
 }
+

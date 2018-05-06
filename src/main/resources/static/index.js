@@ -31,7 +31,7 @@ function convertFileSize(bytes) {
 //запрос текстового файла
 function getTextFromFile() {
     var filename = this.getAttribute("value");
-    console.log(filename);
+    //console.log(filename);
     var options = {"fileName": filename};
  //   console.log(options);
     $.ajax({
@@ -49,11 +49,18 @@ function getTextFromFile() {
 
 function getFilesFromDir() {
     var filename = this.getAttribute("value");
-    var dataToSend = {"filePath": filename}
+    console.log(filename);
+    getFilesFromDirectory(filename);
+}
+
+function getFilesFromDirectory(filename) {
+    //var dataToSend = {"filePath": filename}
+    var addr = "http://localhost:8080/files/" + filename;
+    console.log(filename);
     $.ajax({
-        url: "http://localhost:8080/getfiles",
+        url: addr,
         type: 'GET',
-        data: dataToSend,
+     //   data: dataToSend,
 
         error: function (error) {
             console.log(error);
@@ -65,7 +72,7 @@ function getFilesFromDir() {
 }
 
 function fillData(data){
-    console.log(data);
+    //console.log(data);
     var rows = "";
     //заполнение данных о файлах
     $.each(data.files, function (index, obj) {
@@ -106,8 +113,8 @@ function fillData(data){
 
 //видимость кнопки "назад"
 function changeBackVisibility() {
-    console.log(currentDir);
-    console.log(initDir);
+    //console.log(currentDir);
+    //console.log(initDir);
     if (currentDir==initDir)
         $(".backButton").hide();
     else
@@ -115,7 +122,7 @@ function changeBackVisibility() {
 }
 
 function goBack() {
-    console.log(currentDir+"\\..");
+    //console.log(currentDir+"\\..");
     var dataToSend = {"filePath": pathBack(currentDir)};
     $.ajax({
         url: "http://localhost:8080/getfiles",
