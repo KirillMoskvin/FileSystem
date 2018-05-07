@@ -2,6 +2,20 @@ var currentDir = "";
 var initDir = "";
 
 $(document).ready(function() {
+
+    getInitialData();
+
+    console.log(document.querySelector(".files th").parentElement.parentElement.parentElement);
+
+    $(".close").click(function () {
+        this.modal('hide');
+    });
+
+ /*   $("#confirm-delete .btn-danger").click(function () {
+    });*/
+});
+
+function getInitialData() {
     $.ajax({
         url: "http://localhost:8080/showall",
         type:'GET'
@@ -11,12 +25,7 @@ $(document).ready(function() {
         changeBackVisibility();
         $(".backButton").click(goBack);
     });
-
-    $(".close").click(function () {
-        this.modal('hide');
-    });
-});
-
+}
 //форматирование размера файла в удобочитаемый вид
 function convertFileSize(bytes) {
     var kilo = 1024;
@@ -31,10 +40,9 @@ function convertFileSize(bytes) {
     } while(Math.abs(bytes) >= kilo && unitName < units.length - 1);
     return bytes.toFixed(1)+' '+units[unitName];
 }
-
-//запрос текстового файла
+//запрос текста из файла
 function getTextFromFile() {
-    var filename = this.getAttribute("value");
+    var filename = this.parentElement.getAttribute("value");
     //console.log(filename);
     var options = {"fileName": filename};
  //   console.log(options);
@@ -55,13 +63,13 @@ function getTextFromFile() {
         $('#modalText').modal('show');
     })
 }
-
+//запрос файлов из директории
 function getFilesFromDir() {
     var filename = this.getAttribute("value");
     console.log(filename);
     getFilesFromDirectory(filename);
 }
-
+//запрос файлов из директории
 function getFilesFromDirectory(filename) {
     //var dataToSend = {"filePath": filename}
     var addr = "http://localhost:8080/files/" + filename;
@@ -79,7 +87,7 @@ function getFilesFromDirectory(filename) {
         changeBackVisibility();
     });
 }
-
+//заполнение таблицы
 function fillData(data){
     //console.log(data);
     var rows = "";
@@ -92,12 +100,12 @@ function fillData(data){
             ">" + data.files[index].name + "</td>" +
             "<td>" + convertFileSize(data.files[index].fileSize) + "</td><td>" +
             new Date(data.files[index].creationDate).toLocaleString() + "</td><td>" +
-            new Date(data.files[index].modificationDate).toLocaleString() + "</td>";
+            new Date(data.files[index].modificationDate).toLocaleString() + "</td>"+
+        "<td value='" + data.files[index].absolutePath+"'>";
         if (data.files[index].text)
-            rows += "<td><div class='showText' value='" + data.files[index].absolutePath + "'>show</div></td>";
-        else
-            rows += "<td>&nbsp;</td>"
-        rows += "</tr>"
+            rows += "<a class='btn btn-ok showText'>Show</a>";
+        rows+="<a class='btn btn-danger btn-ok deleteFileButton'>Delete</a>";
+        rows += "</td></tr>"
     });
     document.querySelector(".files tbody").innerHTML=rows;
     currentDir = data.path;
@@ -111,6 +119,12 @@ function fillData(data){
         listText[i].onclick = getTextFromFile;
     }
     //console.log(listText);
+
+
+    var deleteButtons = document.querySelectorAll(".deleteFileButton");
+    for (var i=0; i< deleteButtons.length; i++){
+        deleteButtons[i].onclick=deleteFileQuery;
+    }
 
     var listDirs = document.querySelectorAll(".directory");
     for (var i = 0; i < listDirs.length; i++) {
@@ -129,14 +143,14 @@ function changeBackVisibility() {
     else
         $(".backButton").show();
 }
-
+//назад на одну директорию
 function goBack() {
     //console.log(currentDir+"\\..");
-    var dataToSend = {"filePath": pathBack(currentDir)};
+    //var dataToSend = {"filePath": pathBack(currentDir)};
     $.ajax({
-        url: "http://localhost:8080/getfiles",
+        url: "http://localhost:8080/files/"+pathBack(currentDir),
         type: 'GET',
-        data: dataToSend,
+        //data: dataToSend,
 
         error: function (error) {
             console.log(error);
@@ -146,8 +160,34 @@ function goBack() {
         changeBackVisibility();
     });
 }
-
+//расчёт пути, к которому нужно вернуться
 function pathBack(path) {
     var lastIndex = path.lastIndexOf("\\");
     return path.substring(0, lastIndex);
 }
+
+function deleteFileQuery() {
+    $('#confirm-delete').modal('show');
+    var filename = this.parentElement.getAttribute('value');
+    $('#confirm-delete .btn-danger').replaceWith($('#confirm-delete .btn-danger').clone());
+    $('#confirm-delete .btn-danger').on('click', function () {
+
+            console.log(filename);
+            var addr = "http://localhost:8080/files/" + filename;
+            $.ajax({
+                url: addr,
+                type: 'DELETE',
+                error: function (data) {
+                    alert(data);
+                }
+            }).then(function (value) {
+                alert(value);
+                if (value == "Success")
+                    getInitialData();
+            })
+            $('#confirm-delete').modal('hide');
+        }
+    )
+
+}
+
