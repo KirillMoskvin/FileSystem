@@ -11,6 +11,10 @@ $(document).ready(function() {
         changeBackVisibility();
         $(".backButton").click(goBack);
     });
+
+    $(".close").click(function () {
+        this.modal('hide');
+    });
 });
 
 //форматирование размера файла в удобочитаемый вид
@@ -43,7 +47,12 @@ function getTextFromFile() {
         }
     }).then(function (value) {
         console.log(value);
-        alert(value.content);
+
+        //записываем текст в модальное окно
+        document.querySelector('#modalText .modal-body p').innerText=value.content;
+        document.querySelector('#modalText .modal-title').innerText=value.name;
+        console.log(value);
+        $('#modalText').modal('show');
     })
 }
 

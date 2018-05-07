@@ -43,18 +43,6 @@ public class FileController  {
     public TextFileModel getTextFromFile(@RequestParam(value = "fileName") String fileName) throws IOException{
         return new TextFileModel(fileName);
     }
-    //удаление файла из файловой системы
-    @RequestMapping(value = "/deletefile", method = RequestMethod.DELETE)
-    public String deleteFileOrDirectory(@RequestParam(value = "fileName") String fileName) throws Exception {
-        if (checkAccess(fileName)) {
-            if (FileActionsService.deleteFile(fileName))
-                return "Success";
-            else
-                return "File does not exist";
-        }
-        else
-            return "Error, access denied";
-    }
 
     @RequestMapping(value = "/renamefile", method = RequestMethod.POST)
     public String renameFileOrDirectory(@RequestParam(value = "fileName") String fileName,
@@ -93,10 +81,27 @@ public class FileController  {
     public FilesModel getSomeFiles(HttpServletRequest request)
             throws IOException {
         //достаём путь из запроса
-       //String path = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
+        //String path = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         String path = new AntPathMatcher().extractPathWithinPattern( "/files/**", request.getRequestURI() );
         path = path.replace("%20", " ");
         return getFiles(path);
+    }
+
+    //удаление файла из файловой системы
+    @RequestMapping(value = "/files/**", method = RequestMethod.DELETE)
+    public String deleteFile(HttpServletRequest request) throws IOException, Exception {
+        //достаём путь из запроса
+        //String path = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
+        String path = new AntPathMatcher().extractPathWithinPattern( "/files/**", request.getRequestURI() );
+        path = path.replace("%20", " ");
+        if (checkAccess(path)) {
+            if (FileActionsService.deleteFile(path))
+                return "Success";
+            else
+                return "File does not exist";
+        }
+        else
+            return "Error, access denied";
     }
 
     //проверка, ведёт ли файл в нашу файловую систему
