@@ -103,8 +103,9 @@ function fillData(data){
             new Date(data.files[index].modificationDate).toLocaleString() + "</td>"+
         "<td value='" + data.files[index].absolutePath+"'>";
         if (data.files[index].text)
-            rows += "<a class='btn btn-ok showText'>Show</a>";
-        rows+="<a class='btn btn-danger btn-ok deleteFileButton'>Delete</a>";
+            rows += "<a class='btn btn-primary showText'>Show</a>";
+        rows+="<a class='btn btn-danger btn-ok deleteFileButton'>Delete</a>"+
+        "<a class='btn btn-primary renameFileButton'>Rename</a> ";
         rows += "</td></tr>"
     });
     document.querySelector(".files tbody").innerHTML=rows;
@@ -118,20 +119,23 @@ function fillData(data){
     for (var i = 0; i < listText.length; i++) {
         listText[i].onclick = getTextFromFile;
     }
-    //console.log(listText);
 
-
+    //Удаляем файл по клику
     var deleteButtons = document.querySelectorAll(".deleteFileButton");
     for (var i=0; i< deleteButtons.length; i++){
         deleteButtons[i].onclick=deleteFileQuery;
     }
 
+    //Переименовываем файл
+    var renameButtons = document.querySelectorAll(".renameFileButton");
+    for (var i=0; i<renameButtons.length; i++){
+        renameButtons[i].onclick=renameFileQuery;
+    }
+    //Для директорий - организуем их просмотр
     var listDirs = document.querySelectorAll(".directory");
     for (var i = 0; i < listDirs.length; i++) {
         listDirs[i].onclick = getFilesFromDir;
     }
-
-
 };
 
 //видимость кнопки "назад"
@@ -165,14 +169,15 @@ function pathBack(path) {
     var lastIndex = path.lastIndexOf("\\");
     return path.substring(0, lastIndex);
 }
-
+//запрос на удаление файла
 function deleteFileQuery() {
     $('#confirm-delete').modal('show');
     var filename = this.parentElement.getAttribute('value');
+    //устанавливаем новый обработчик клика
     $('#confirm-delete .btn-danger').replaceWith($('#confirm-delete .btn-danger').clone());
     $('#confirm-delete .btn-danger').on('click', function () {
 
-            console.log(filename);
+            //console.log(filename);
             var addr = "http://localhost:8080/files/" + filename;
             $.ajax({
                 url: addr,
@@ -188,6 +193,33 @@ function deleteFileQuery() {
             $('#confirm-delete').modal('hide');
         }
     )
+}
+//запрос на переименование файла
+function renameFileQuery() {
+    $('#renameFile').modal('show');
+    var filename = this.parentElement.getAttribute('value');
+    $('#renameFile .renameButton').replaceWith($('#renameFile .renameButton').clone());
+    $('#renameFile .renameButton').on('click', function () {
+        console.log($('#file-name').val());
+        var addr = "http://localhost:8080/files/" + filename;
+        var newName = $('#file-name').val();
+        $.ajax({
+            url:addr,
+            type: 'POST',
+            contentType: "application/json",
+            //dataType: "json",
+            data: JSON.stringify({"action":"rename","newName":newName}),
+            error: function (data) {
+                console.log(data);
+            }
+        }).then(function (value) {
+                alert(value);
+                if (value == "Success")
+                    getInitialData();
+             })
 
+
+        $('#renameFile').modal('hide');
+    })
 }
 

@@ -5,9 +5,7 @@ import java.nio.file.*;
 
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.HandlerMapping;
-import ru.moskvin.files.models.FilesModel;
-import ru.moskvin.files.models.TextFileModel;
+import ru.moskvin.files.models.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -77,6 +75,7 @@ public class FileController  {
             throw new AccessDeniedException("Required file is not in file system");
     }
 
+    //получение файлов по заданному пути
     @RequestMapping(value = "/files/**", method = RequestMethod.GET)
     public FilesModel getSomeFiles(HttpServletRequest request)
             throws IOException {
@@ -103,6 +102,37 @@ public class FileController  {
         else
             return "Error, access denied";
     }
+
+    //обработка POST-запросов на переименование, копирование и перемещение
+    @RequestMapping(value = "/files/**", method = RequestMethod.POST)
+    public String postProcessing(@RequestBody FileActionRequestModel requestModel,
+                                 HttpServletRequest request) throws IOException, Exception {
+
+        //достаём путь из запроса
+        String path = new AntPathMatcher().extractPathWithinPattern( "/files/**", request.getRequestURI() );
+        path = path.replace("%20", " ");
+
+        if (checkAccess(path)) {
+            String action = requestModel.getAction();
+            if (action == null)
+                throw new IllegalArgumentException("Action must be specified");
+            switch (action) {
+                case "copy":
+                    return "copy";
+                case "move":
+                    return "move";
+                case "rename":
+                    if (FileActionsService.renameFile(path, root+"/"+ requestModel.getNewName()))
+                        return "Success";
+                    return "Error";
+                default:
+                    throw new IllegalArgumentException("Illegal action");
+            }
+        }
+        else
+            return "Access denied";
+    }
+
 
     //проверка, ведёт ли файл в нашу файловую систему
     protected boolean checkAccess(String path) throws IOException{
