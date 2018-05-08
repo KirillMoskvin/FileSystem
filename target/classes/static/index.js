@@ -1,5 +1,6 @@
 var currentDir = "";
 var initDir = "";
+var chosenFile = "";
 
 $(document).ready(function() {
 
@@ -10,9 +11,10 @@ $(document).ready(function() {
     $(".close").click(function () {
         this.modal('hide');
     });
+    $("#move-copy-button").hide();
 
- /*   $("#confirm-delete .btn-danger").click(function () {
-    });*/
+    /*   $("#confirm-delete .btn-danger").click(function () {
+       });*/
 });
 
 function getInitialData() {
@@ -104,8 +106,10 @@ function fillData(data){
         "<td value='" + data.files[index].absolutePath+"'>";
         if (data.files[index].text)
             rows += "<a class='btn btn-primary showText'>Show</a>";
-        rows+="<a class='btn btn-danger btn-ok deleteFileButton'>Delete</a>"+
-        "<a class='btn btn-primary renameFileButton'>Rename</a> ";
+        rows+="<a class='btn btn-primary renameFileButton'>Rename</a>"+
+        "<a class='btn btn-primary moveFileButton'>Move</a>"  +
+        "<a class='btn btn-primary copyFileButton'>Copy</a>" +
+        "<a class='btn btn-danger btn-ok deleteFileButton'>Delete</a>";
         rows += "</td></tr>"
     });
     document.querySelector(".files tbody").innerHTML=rows;
@@ -131,11 +135,22 @@ function fillData(data){
     for (var i=0; i<renameButtons.length; i++){
         renameButtons[i].onclick=renameFileQuery;
     }
+    //Перемещение файла
+    var moveButtons = document.querySelectorAll(".moveFileButton");
+    for (var i=0; i<moveButtons.length; i++){
+        moveButtons[i].onclick=moveFileQuery;
+    }
+    //Копирование файла
+    var copyButtons = document.querySelectorAll(".copyFileButton");
+    for (var i=0; i<copyButtons.length; i++){
+        copyButtons[i].onclick=copyFileQuery;
+    }
     //Для директорий - организуем их просмотр
     var listDirs = document.querySelectorAll(".directory");
     for (var i = 0; i < listDirs.length; i++) {
         listDirs[i].onclick = getFilesFromDir;
     }
+
 };
 
 //видимость кнопки "назад"
@@ -221,5 +236,32 @@ function renameFileQuery() {
 
         $('#renameFile').modal('hide');
     })
+}
+function moveFileQuery(){
+    chosenFile = this.parentElement.getAttribute('value');
+    $("#move-copy-button").html("Move here");
+    $("#move-copy-button").show();
+    $("#move-copy-button").on("click", function () {
+        var addr = "http://localhost:8080/files/" + chosenFile;
+        var path = currentDir;
+        $.ajax({
+            url:addr,
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify({"action":"move","path":currentDir}),
+            error: function (data) {
+                console.log(data);
+            }
+        }).then(function (value) {
+            alert(value);
+            if (value == "Success")
+                getFilesFromDirectory(currentDir);
+        })
+        $("#move-copy-button").hide();
+    })
+}
+
+function copyFileQuery() {
+    
 }
 

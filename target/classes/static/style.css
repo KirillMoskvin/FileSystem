@@ -1,7 +1,6 @@
 .files, .files td, .files tr, .files th{
     border: 1px solid black;
     border-collapse: collapse;
-
 }
 
 .showText:hover, .directory:hover {
@@ -13,4 +12,8 @@
     text-decoration: underline;
     text-color: blue;
     color: blue;
+}
+
+.move-copy-button{
+    visibility: hidden;
 }

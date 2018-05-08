@@ -47,14 +47,15 @@ public class FileActionsService {
     //перемещение
     public static void moveFileOrDirectory (String fileName, String destPath) throws IOException {
         File sourceFile = new File(fileName);
-        File destFile = new File(destPath);
+        File destFile = new File(destPath + "/"+sourceFile.getName());
 
-        if (!sourceFile.isDirectory())
+        sourceFile.renameTo(destFile);
+      /*  if (!sourceFile.isDirectory())
             Files.move(sourceFile.toPath(), destFile.toPath());
         else {
             destFile.mkdir();
             for (File file : sourceFile.listFiles())
-                Files.move(file.toPath(), destFile.toPath());
-        }
+                Files.move(Paths.get(fileName), Paths.get(destPath)); */
+      //  }
     }
 }

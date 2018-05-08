@@ -120,7 +120,8 @@ public class FileController  {
                 case "copy":
                     return "copy";
                 case "move":
-                    return "move";
+                    FileActionsService.moveFileOrDirectory(path, requestModel.getPath());
+                    return "Success";
                 case "rename":
                     if (FileActionsService.renameFile(path, root+"/"+ requestModel.getNewName()))
                         return "Success";
