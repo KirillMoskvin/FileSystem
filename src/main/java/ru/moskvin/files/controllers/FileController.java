@@ -42,39 +42,6 @@ public class FileController  {
         return new TextFileModel(fileName);
     }
 
-    @RequestMapping(value = "/renamefile", method = RequestMethod.POST)
-    public String renameFileOrDirectory(@RequestParam(value = "fileName") String fileName,
-                                        @RequestParam(value = "newFileName") String newFileName) throws IOException{
-        if (checkAccess(fileName))
-            if (FileActionsService.renameFile(fileName,newFileName))
-                return "Success";
-            else
-                return "Error, file with this name already exists";
-        else
-            throw new AccessDeniedException("Required File is not in file system");
-    }
-
-    @RequestMapping(value = "/copyfile", method = RequestMethod.POST)
-    public String copyFileOrDirectory(@RequestParam(value = "fileName") String fileName,
-                                      @RequestParam(value = "destPath") String destPath) throws IOException {
-        if (checkAccess(fileName) && checkAccess(destPath)) {
-            FileActionsService.copyFile(fileName,destPath);
-            return "Succeess";
-        }
-        else
-            throw new AccessDeniedException("Required file is not in file system");
-    }
-
-    @RequestMapping(value = "/movefile", method = RequestMethod.POST)
-    public String moveFileOrDirectory(@RequestParam(value = "fileName") String fileName,
-                                      @RequestParam(value = "destPath") String destPath) throws IOException {
-        if (checkAccess(fileName) && checkAccess(destPath)) {
-            return "Success";
-        }
-        else
-            throw new AccessDeniedException("Required file is not in file system");
-    }
-
     //получение файлов по заданному пути
     @RequestMapping(value = "/files/**", method = RequestMethod.GET)
     public FilesModel getSomeFiles(HttpServletRequest request)
@@ -118,7 +85,8 @@ public class FileController  {
                 throw new IllegalArgumentException("Action must be specified");
             switch (action) {
                 case "copy":
-                    return "copy";
+                    FileActionsService.copyFile(path, requestModel.getPath());
+                    return "Success";
                 case "move":
                     FileActionsService.moveFileOrDirectory(path, requestModel.getPath());
                     return "Success";

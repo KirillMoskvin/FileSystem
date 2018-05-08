@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2e8a1cb-9453-4d04-8c08-2d95249bcce0" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/rootDir/file123.nottxt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rootDir/qqq/file123.nottxt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileActionsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileActionsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/moskvin/files/controllers/FileActionsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/moskvin/files/controllers/FileActionsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/moskvin/files/controllers/FileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/moskvin/files/controllers/FileController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -19,8 +21,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/FileSystem$Application.ic" NAME="Application Coverage Results" MODIFIED="1525123618008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>files.*</FILTER>
+    <SUITE FILE_PATH="coverage/FileSystem$Application.ic" NAME="Application Coverage Results" MODIFIED="1525786662346" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ru.moskvin.files.models.*</FILTER>
     </SUITE>
   </component>
   <component name="FileEditorManager">
@@ -28,8 +30,8 @@
       <file leaf-file-name="FileController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="122" selection-start-line="122" selection-end-line="122" />
+            <state relative-caret-position="70">
+              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -37,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="239" column="29" selection-start-line="239" selection-start-column="29" selection-end-line="239" selection-end-column="29" />
+            <state relative-caret-position="398">
+              <caret line="277" column="48" selection-start-line="277" selection-start-column="48" selection-end-line="277" selection-end-column="48" />
               <folding>
                 <element signature="n#!!block;n#convertFileSize#0" />
                 <element signature="n#!!block;n#getFilesFromDir#0" />
@@ -55,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileActionsService.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FileActionsService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileActionsService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="49" selection-start-line="49" selection-end-line="49" />
+            <state relative-caret-position="347">
+              <caret line="24" column="63" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -160,9 +162,9 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/models/FileActionRequestModel.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/style.css" />
         <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/index.js" />
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileController.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileActionsService.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/index.js" />
       </list>
     </option>
   </component>
@@ -216,7 +218,18 @@
             <path>
               <item name="FileSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="FileSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="dfsfsd" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FileSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FileSystem" type="462c0819:PsiDirectoryNode" />
               <item name="rootDir" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FileSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FileSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="rootDir" type="462c0819:PsiDirectoryNode" />
+              <item name="qqq" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FileSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -427,12 +440,12 @@
       <workItem from="1525608427451" duration="14689000" />
       <workItem from="1525685762806" duration="11241000" />
       <workItem from="1525723722805" duration="12295000" />
-      <workItem from="1525767573082" duration="13619000" />
+      <workItem from="1525767573082" duration="17516000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140981000" />
+    <option name="totallyTimeSpent" value="144878000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -448,7 +461,7 @@
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.1921875" side_tool="true" visible="true" weight="0.25504783" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.1953125" side_tool="true" visible="true" weight="0.25504783" />
       <window_info anchor="right" id="Maven Projects" order="6" visible="true" weight="0.0" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info id="Capture Tool" order="6" />
@@ -457,7 +470,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.853125" weight="0.3985122" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.85" weight="0.3985122" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.21030043" />
       <window_info anchor="bottom" id="Messages" order="9" sideWeight="0.49739584" weight="0.3209352" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
@@ -465,10 +478,11 @@
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8078125" visible="true" weight="0.25504783" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8046875" visible="true" weight="0.25504783" />
+      <window_info anchor="right" id="Coverage" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Spring" order="11" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.33113313" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1609375" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1609375" />
       <window_info anchor="right" id="Bean Validation" order="7" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32943678" />
@@ -479,7 +493,6 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Coverage" order="8" side_tool="true" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -501,32 +514,8 @@
           <line>4</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileController.java</url>
-          <line>93</line>
-          <properties />
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileActionsService.java</url>
-          <line>26</line>
-          <properties />
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileController.java</url>
-          <line>122</line>
-          <properties />
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileActionsService.java</url>
-          <line>49</line>
-          <properties />
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="49" />
+      <option name="time" value="55" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -586,13 +575,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.5.RELEASE/spring-webmvc-5.0.5.RELEASE.jar!/org/springframework/web/servlet/FrameworkServlet.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="110" column="183" selection-start-line="110" selection-start-column="183" selection-end-line="110" selection-end-column="183" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rootDir/sampletext.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -604,13 +586,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="20" column="55" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.5.RELEASE/spring-webmvc-5.0.5.RELEASE.jar!/org/springframework/web/servlet/DispatcherServlet.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="109" column="154" selection-start-line="109" selection-start-column="154" selection-end-line="109" selection-end-column="154" />
         </state>
       </provider>
     </entry>
@@ -843,6 +818,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="277" column="48" selection-start-line="277" selection-start-column="48" selection-end-line="277" selection-end-column="48" />
+          <folding>
+            <element signature="n#!!block;n#convertFileSize#0" />
+            <element signature="n#!!block;n#getFilesFromDir#0" />
+            <element signature="n#!!block;n#getFilesFromDirectory#0" />
+            <element signature="n#!!block;n#changeBackVisibility#0" />
+            <element signature="n#!!block;n#goBack#0" />
+            <element signature="n#!!block;n#pathBack#0" />
+            <element signature="n#!!block;n#deleteFileQuery#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.5.RELEASE/spring-webmvc-5.0.5.RELEASE.jar!/org/springframework/web/servlet/DispatcherServlet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="107" column="153" selection-start-line="107" selection-start-column="153" selection-end-line="107" selection-end-column="153" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.5.RELEASE/spring-webmvc-5.0.5.RELEASE.jar!/org/springframework/web/servlet/FrameworkServlet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="124" column="196" selection-start-line="124" selection-start-column="196" selection-end-line="124" selection-end-column="196" />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.5.RELEASE/spring-webmvc-5.0.5.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -879,8 +884,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="122" selection-start-line="122" selection-end-line="122" />
+        <state relative-caret-position="70">
+          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -889,26 +894,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileActionsService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        <state relative-caret-position="347">
+          <caret line="24" column="63" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="239" column="29" selection-start-line="239" selection-start-column="29" selection-end-line="239" selection-end-column="29" />
-          <folding>
-            <element signature="n#!!block;n#convertFileSize#0" />
-            <element signature="n#!!block;n#getFilesFromDir#0" />
-            <element signature="n#!!block;n#getFilesFromDirectory#0" />
-            <element signature="n#!!block;n#changeBackVisibility#0" />
-            <element signature="n#!!block;n#goBack#0" />
-            <element signature="n#!!block;n#pathBack#0" />
-            <element signature="n#!!block;n#deleteFileQuery#0" />
           </folding>
         </state>
       </provider>

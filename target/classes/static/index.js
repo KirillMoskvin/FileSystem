@@ -237,10 +237,12 @@ function renameFileQuery() {
         $('#renameFile').modal('hide');
     })
 }
+//запрос на перемещение файла
 function moveFileQuery(){
     chosenFile = this.parentElement.getAttribute('value');
     $("#move-copy-button").html("Move here");
     $("#move-copy-button").show();
+    $('#move-copy-button').replaceWith($('#move-copy-button').clone()); //чтобы очистить обработчики
     $("#move-copy-button").on("click", function () {
         var addr = "http://localhost:8080/files/" + chosenFile;
         var path = currentDir;
@@ -260,8 +262,29 @@ function moveFileQuery(){
         $("#move-copy-button").hide();
     })
 }
-
+//копирование файла
 function copyFileQuery() {
-    
+    chosenFile = this.parentElement.getAttribute('value');
+    $("#move-copy-button").html("Copy here");
+    $("#move-copy-button").show();
+    $('#move-copy-button').replaceWith($('#move-copy-button').clone()); //чтобы очистить обработчики
+    $("#move-copy-button").on("click", function () {
+        var addr = "http://localhost:8080/files/" + chosenFile;
+        var path = currentDir;
+        $.ajax({
+            url:addr,
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify({"action":"copy","path":currentDir}),
+            error: function (data) {
+                console.log(data);
+            }
+        }).then(function (value) {
+            alert(value);
+            if (value == "Success")
+                getFilesFromDirectory(currentDir);
+        })
+        $("#move-copy-button").hide();
+    })
 }
 
