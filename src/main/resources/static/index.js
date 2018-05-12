@@ -2,7 +2,7 @@ var currentDir = "";
 var initDir = "";
 var chosenFile = "";
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     getInitialData();
 
@@ -12,65 +12,66 @@ $(document).ready(function() {
         this.modal('hide');
     });
     $("#move-copy-button").hide();
-
-    /*   $("#confirm-delete .btn-danger").click(function () {
-       });*/
 });
 
 function getInitialData() {
     $.ajax({
         url: "http://localhost:8080/showall",
-        type:'GET'
+        type: 'GET'
     }).then(function (data) {
         fillData(data);
-        initDir=currentDir;
+        initDir = currentDir;
         changeBackVisibility();
         $(".backButton").click(goBack);
     });
 }
+
 //форматирование размера файла в удобочитаемый вид
 function convertFileSize(bytes) {
     var kilo = 1024;
-    if(Math.abs(bytes) < kilo) {
+    if (Math.abs(bytes) < kilo) {
         return bytes + ' B';
     }
-    var units = ['kB','MB','GB','TB'];
+    var units = ['kB', 'MB', 'GB', 'TB'];
     var unitName = -1;
     do {
         bytes /= kilo;
         ++unitName;
-    } while(Math.abs(bytes) >= kilo && unitName < units.length - 1);
-    return bytes.toFixed(1)+' '+units[unitName];
+    } while (Math.abs(bytes) >= kilo && unitName < units.length - 1);
+    return bytes.toFixed(1) + ' ' + units[unitName];
 }
+
 //запрос текста из файла
 function getTextFromFile() {
     var filename = this.parentElement.getAttribute("value");
     //console.log(filename);
     var options = {"fileName": filename};
- //   console.log(options);
+    //   console.log(options);
     $.ajax({
-        url:"http://localhost:8080/gettextfromfile",
-        type:"GET",
+        url: "http://localhost:8080/gettextfromfile",
+        type: "GET",
         data: options,
-        error: function(error){
+        error: function (error) {
             console.log(error);
         }
     }).then(function (value) {
         console.log(value);
 
         //записываем текст в модальное окно
-        document.querySelector('#modalText .modal-body p').innerText=value.content;
-        document.querySelector('#modalText .modal-title').innerText=value.name;
+        document.querySelector('#modalText .modal-body p').innerText = value.content;
+        document.querySelector('#modalText .modal-title').innerText = value.name;
         console.log(value);
         $('#modalText').modal('show');
     })
 }
+
 //запрос файлов из директории
 function getFilesFromDir() {
     var filename = this.getAttribute("value");
     console.log(filename);
     getFilesFromDirectory(filename);
 }
+
 //запрос файлов из директории
 function getFilesFromDirectory(filename) {
     //var dataToSend = {"filePath": filename}
@@ -79,7 +80,7 @@ function getFilesFromDirectory(filename) {
     $.ajax({
         url: addr,
         type: 'GET',
-     //   data: dataToSend,
+        //   data: dataToSend,
 
         error: function (error) {
             console.log(error);
@@ -89,8 +90,9 @@ function getFilesFromDirectory(filename) {
         changeBackVisibility();
     });
 }
+
 //заполнение таблицы
-function fillData(data){
+function fillData(data) {
     //console.log(data);
     var rows = "";
     //заполнение данных о файлах
@@ -102,17 +104,17 @@ function fillData(data){
             ">" + data.files[index].name + "</td>" +
             "<td>" + convertFileSize(data.files[index].fileSize) + "</td><td>" +
             new Date(data.files[index].creationDate).toLocaleString() + "</td><td>" +
-            new Date(data.files[index].modificationDate).toLocaleString() + "</td>"+
-        "<td value='" + data.files[index].absolutePath+"'>";
+            new Date(data.files[index].modificationDate).toLocaleString() + "</td>" +
+            "<td value='" + data.files[index].absolutePath + "'>";
         if (data.files[index].text)
             rows += "<a class='btn btn-primary showText'>Show</a>";
-        rows+="<a class='btn btn-primary renameFileButton'>Rename</a>"+
-        "<a class='btn btn-primary moveFileButton'>Move</a>"  +
-        "<a class='btn btn-primary copyFileButton'>Copy</a>" +
-        "<a class='btn btn-danger btn-ok deleteFileButton'>Delete</a>";
+        rows += "<a class='btn btn-primary renameFileButton'>Rename</a>" +
+            "<a class='btn btn-primary moveFileButton'>Move</a>" +
+            "<a class='btn btn-primary copyFileButton'>Copy</a>" +
+            "<a class='btn btn-danger btn-ok deleteFileButton'>Delete</a>";
         rows += "</td></tr>"
     });
-    document.querySelector(".files tbody").innerHTML=rows;
+    document.querySelector(".files tbody").innerHTML = rows;
     currentDir = data.path;
 
 
@@ -126,24 +128,24 @@ function fillData(data){
 
     //Удаляем файл по клику
     var deleteButtons = document.querySelectorAll(".deleteFileButton");
-    for (var i=0; i< deleteButtons.length; i++){
-        deleteButtons[i].onclick=deleteFileQuery;
+    for (var i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].onclick = deleteFileQuery;
     }
 
     //Переименовываем файл
     var renameButtons = document.querySelectorAll(".renameFileButton");
-    for (var i=0; i<renameButtons.length; i++){
-        renameButtons[i].onclick=renameFileQuery;
+    for (var i = 0; i < renameButtons.length; i++) {
+        renameButtons[i].onclick = renameFileQuery;
     }
     //Перемещение файла
     var moveButtons = document.querySelectorAll(".moveFileButton");
-    for (var i=0; i<moveButtons.length; i++){
-        moveButtons[i].onclick=moveFileQuery;
+    for (var i = 0; i < moveButtons.length; i++) {
+        moveButtons[i].onclick = moveFileQuery;
     }
     //Копирование файла
     var copyButtons = document.querySelectorAll(".copyFileButton");
-    for (var i=0; i<copyButtons.length; i++){
-        copyButtons[i].onclick=copyFileQuery;
+    for (var i = 0; i < copyButtons.length; i++) {
+        copyButtons[i].onclick = copyFileQuery;
     }
     //Для директорий - организуем их просмотр
     var listDirs = document.querySelectorAll(".directory");
@@ -157,17 +159,18 @@ function fillData(data){
 function changeBackVisibility() {
     //console.log(currentDir);
     //console.log(initDir);
-    if (currentDir==initDir)
+    if (currentDir == initDir)
         $(".backButton").hide();
     else
         $(".backButton").show();
 }
+
 //назад на одну директорию
 function goBack() {
     //console.log(currentDir+"\\..");
     //var dataToSend = {"filePath": pathBack(currentDir)};
     $.ajax({
-        url: "http://localhost:8080/files/"+pathBack(currentDir),
+        url: "http://localhost:8080/files/" + pathBack(currentDir),
         type: 'GET',
         //data: dataToSend,
 
@@ -179,11 +182,13 @@ function goBack() {
         changeBackVisibility();
     });
 }
+
 //расчёт пути, к которому нужно вернуться
 function pathBack(path) {
     var lastIndex = path.lastIndexOf("\\");
     return path.substring(0, lastIndex);
 }
+
 //запрос на удаление файла
 function deleteFileQuery() {
     $('#confirm-delete').modal('show');
@@ -209,6 +214,7 @@ function deleteFileQuery() {
         }
     )
 }
+
 //запрос на переименование файла
 function renameFileQuery() {
     $('#renameFile').modal('show');
@@ -219,26 +225,27 @@ function renameFileQuery() {
         var addr = "http://localhost:8080/files/" + filename;
         var newName = $('#file-name').val();
         $.ajax({
-            url:addr,
+            url: addr,
             type: 'POST',
             contentType: "application/json",
             //dataType: "json",
-            data: JSON.stringify({"action":"rename","newName":newName}),
+            data: JSON.stringify({"action": "rename", "newName": newName}),
             error: function (data) {
                 console.log(data);
             }
         }).then(function (value) {
-                alert(value);
-                if (value == "Success")
-                    getInitialData();
-             })
+            alert(value);
+            if (value == "Success")
+                getInitialData();
+        })
 
 
         $('#renameFile').modal('hide');
     })
 }
+
 //запрос на перемещение файла
-function moveFileQuery(){
+function moveFileQuery() {
     chosenFile = this.parentElement.getAttribute('value');
     $("#move-copy-button").html("Move here");
     $("#move-copy-button").show();
@@ -247,10 +254,10 @@ function moveFileQuery(){
         var addr = "http://localhost:8080/files/" + chosenFile;
         var path = currentDir;
         $.ajax({
-            url:addr,
+            url: addr,
             type: 'POST',
             contentType: "application/json",
-            data: JSON.stringify({"action":"move","path":currentDir}),
+            data: JSON.stringify({"action": "move", "path": currentDir}),
             error: function (data) {
                 console.log(data);
             }
@@ -262,6 +269,7 @@ function moveFileQuery(){
         $("#move-copy-button").hide();
     })
 }
+
 //копирование файла
 function copyFileQuery() {
     chosenFile = this.parentElement.getAttribute('value');
@@ -272,10 +280,10 @@ function copyFileQuery() {
         var addr = "http://localhost:8080/files/" + chosenFile;
         var path = currentDir;
         $.ajax({
-            url:addr,
+            url: addr,
             type: 'POST',
             contentType: "application/json",
-            data: JSON.stringify({"action":"copy","path":currentDir}),
+            data: JSON.stringify({"action": "copy", "path": currentDir}),
             error: function (data) {
                 console.log(data);
             }

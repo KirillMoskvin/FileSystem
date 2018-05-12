@@ -14,9 +14,9 @@ public class FileModel {
     //путь к файлу
     Path path;
 
-    public FileModel(String filePath) throws IOException{
+    public FileModel(String filePath) throws IOException {
         path = Paths.get(filePath);
-        fileInfo = Files.readAttributes(path,BasicFileAttributes.class);
+        fileInfo = Files.readAttributes(path, BasicFileAttributes.class);
         long sz = fileInfo.size();
         FileTime ft = fileInfo.creationTime();
         FileTime ft2 = fileInfo.lastModifiedTime();
@@ -24,28 +24,33 @@ public class FileModel {
     }
 
     //Имя файла
-    public String getName(){
+    public String getName() {
         return path.getFileName().toString();
     }
+
     //Размер файла
-    public long getFileSize(){
+    public long getFileSize() {
         return fileInfo.size();
     }
+
     //Дата создания
-    public Date getCreationDate(){
-        return  new Date(fileInfo.creationTime().toMillis());
+    public Date getCreationDate() {
+        return new Date(fileInfo.creationTime().toMillis());
     }
+
     //Дата последнего изменения
-    public Date getModificationDate(){
+    public Date getModificationDate() {
         return new Date(fileInfo.lastModifiedTime().toMillis());
     }
+
     //Является ли файл директорией
-    public boolean isDirectory(){
+    public boolean isDirectory() {
         return fileInfo.isDirectory();
     }
+
     //Является ли файл текстовым
-    public boolean isText(){
-        String extension ="";
+    public boolean isText() {
+        String extension = "";
         String name = this.getName();
         int i = name.lastIndexOf('.');
         if (i > 0) {
@@ -53,8 +58,9 @@ public class FileModel {
         }
         return extension.equals("txt");
     }
+
     //Абсолютный путь к файлу
-    public String getAbsolutePath(){
+    public String getAbsolutePath() {
         return path.toAbsolutePath().toString();
     }
 

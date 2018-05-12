@@ -12,13 +12,13 @@ import java.nio.file.AccessDeniedException;
 @RestController
 public class ExceptionController {
 
-  /*  @ExceptionHandler(IOException.class)
+    @ExceptionHandler(IOException.class)
     public ResponseEntity<String> handle(HttpServletRequest request) {
         return new ResponseEntity<>("no such file", HttpStatus.NOT_FOUND);
-    }   */
+    }
 
     @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<String> handleAccessDeniedException (HttpServletRequest request) {
+    public ResponseEntity<String> handleAccessDeniedException(HttpServletRequest request) {
         return new ResponseEntity<>("Access denied", HttpStatus.BAD_REQUEST);
     }
 }

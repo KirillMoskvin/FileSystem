@@ -1,4 +1,4 @@
-package ru.moskvin.files.controllers;
+package ru.moskvin.files.Services;
 
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.util.FileCopyUtils;
@@ -7,16 +7,13 @@ import org.springframework.util.FileSystemUtils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class FileActionsService {
     //удаление
-    public static boolean deleteFile(String fileName) throws FileNotFoundException, Exception{
+    public static boolean deleteFile(String fileName) throws FileNotFoundException, Exception {
         File file = new File(fileName);
         if (Files.exists(Paths.get(fileName))) {
             if (!Files.isDirectory(Paths.get(fileName)))
@@ -24,10 +21,10 @@ public class FileActionsService {
             else
                 return FileSystemUtils.deleteRecursively(file);
             return true;
-        }
-        else
+        } else
             return false;
     }
+
     //переименование
     public static boolean renameFile(String fileName, String newFileName) throws FileAlreadyExistsException,
             IOException {
@@ -38,34 +35,30 @@ public class FileActionsService {
         }
 
         Files.move(oldFile, newFile.resolveSibling(newFile.getFileName()));
-            return true;
+        return true;
     }
+
     //копирование
     public static void copyFile(String fileName, String destPath) throws IOException {
         File sourceFile = new File(fileName);
-        File destFile = new File(destPath+"/"+sourceFile.getName());
-        while (destFile.exists())
-            destFile=new File(destFile.getPath()+"1");
+        File destFile = new File(destPath + "/" + sourceFile.getName());
+        while (destFile.exists()) {
+            destFile = new File(destFile.getPath() + "1");
+        }
         if (!sourceFile.isDirectory())
             Files.copy(sourceFile.toPath(), destFile.toPath());
         else {
             destFile.mkdir();
             for (File file : sourceFile.listFiles()) {
-                Files.copy(file.toPath(), new File (destFile.getPath()+"/"+file.getName()).toPath());
+                Files.copy(file.toPath(), new File(destFile.getPath() + "/" + file.getName()).toPath());
             }
         }
     }
+
     //перемещение
-    public static void moveFileOrDirectory (String fileName, String destPath) throws IOException {
+    public static void moveFileOrDirectory(String fileName, String destPath) throws IOException {
         File sourceFile = new File(fileName);
-        File destFile = new File(destPath + "/"+sourceFile.getName());
+        File destFile = new File(destPath + "/" + sourceFile.getName());
         sourceFile.renameTo(destFile);
-      /*  if (!sourceFile.isDirectory())
-            Files.move(sourceFile.toPath(), destFile.toPath());
-        else {
-            destFile.mkdir();
-            for (File file : sourceFile.listFiles())
-                Files.move(Paths.get(fileName), Paths.get(destPath)); */
-      //  }
     }
 }
