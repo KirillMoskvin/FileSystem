@@ -24,6 +24,12 @@ public class FileController {
         rootPath = init();
     }
 
+    protected static Path init() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(cfgFilePath));
+        root = reader.readLine();
+        return Paths.get(root);
+    }
+
     //доступ к корню файловой системы
     @RequestMapping(value = "/showall", method = RequestMethod.GET)
     public FilesModel fileSystemShowAll() throws IOException {
@@ -101,19 +107,12 @@ public class FileController {
             return "Access denied";
     }
 
-
     //проверка, ведёт ли файл в нашу файловую систему
     protected boolean checkAccess(String path) throws IOException {
         Path requiredPath = Paths.get(path).toAbsolutePath();
         if (requiredPath.equals(rootPath.toAbsolutePath()) || requiredPath.startsWith(rootPath.toAbsolutePath()))
             return true;
         return false;
-    }
-
-    protected static Path init() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(cfgFilePath));
-        root = reader.readLine();
-        return Paths.get(root);
     }
 }
 

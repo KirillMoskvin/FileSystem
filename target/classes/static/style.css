@@ -21,7 +21,9 @@
 #modalText .modal-dialog{
     overflow-y: initial !important
 }
+
 #modalText .modal-body{
     height: 550px;
     overflow-y: auto;
 }
+

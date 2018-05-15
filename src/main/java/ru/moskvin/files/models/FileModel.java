@@ -9,10 +9,10 @@ import java.nio.file.attribute.FileTime;
 import java.util.Date;
 
 public class FileModel {
-    //информация о файле
-    private BasicFileAttributes fileInfo;
     //путь к файлу
     Path path;
+    //информация о файле
+    private BasicFileAttributes fileInfo;
 
     public FileModel(String filePath) throws IOException {
         path = Paths.get(filePath);
