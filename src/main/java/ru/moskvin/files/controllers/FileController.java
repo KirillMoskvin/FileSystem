@@ -4,10 +4,14 @@ import java.io.*;
 import java.net.URLDecoder;
 import java.nio.file.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.bind.annotation.*;
-import ru.moskvin.files.Services.FileActionsService;
+import ru.moskvin.files.services.FileActionsService;
 import ru.moskvin.files.models.*;
+import ru.moskvin.files.persistence.H2Dao;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,6 +22,8 @@ public class FileController {
     //корень файловой системы
     private static String root;
     private static Path rootPath;
+    @Autowired
+    private H2Dao h2Dao;
 
 
     public FileController() throws IOException {
@@ -67,7 +73,7 @@ public class FileController {
         //достаём путь из запроса
         //String path = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         String path = new AntPathMatcher().extractPathWithinPattern("/files/**", request.getRequestURI());
-        path = path.replace("%20", " ");
+        path = URLDecoder.decode(path, "UTF-8");
         if (checkAccess(path)) {
             if (FileActionsService.deleteFile(path))
                 return "Success";
@@ -83,7 +89,7 @@ public class FileController {
                                  HttpServletRequest request) throws IOException, Exception {
         //достаём путь из запроса
         String path = new AntPathMatcher().extractPathWithinPattern("/files/**", request.getRequestURI());
-        path = path.replace("%20", " ");
+        path = URLDecoder.decode(path, "UTF-8");
 
         if (checkAccess(path)) {
             String action = requestModel.getAction();
@@ -105,6 +111,11 @@ public class FileController {
             }
         } else
             return "Access denied";
+    }
+
+    @RequestMapping(value = "/download/**", method = RequestMethod.GET)
+    public ResponseEntity<InputStreamResource> downloadFile(@RequestParam String fileName){
+        return null;
     }
 
     //проверка, ведёт ли файл в нашу файловую систему

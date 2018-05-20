@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="users@localhost" uuid="9b9d4563-dd84-4fd0-b36c-379a05bd7163">
-      <database-info product="MySQL" version="8.0.11" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
-        <extra-name-characters>#@</extra-name-characters>
-        <identifier-quote-string>`</identifier-quote-string>
+    <data-source name="userdb" uuid="a0bcbad1-3403-4c76-9c0b-df76e4cda26d">
+      <database-info product="H2" version="1.4.196 (2017-06-10)" jdbc-version="4.0" driver-name="H2 JDBC Driver" driver-version="1.4.196 (2017-06-10)">
+        <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
-      <user-name>root</user-name>
-      <introspection-schemas>*:users</introspection-schemas>
+      <user-name>sa</user-name>
+      <introspection-schemas>USERDB:PUBLIC</introspection-schemas>
     </data-source>
   </component>
 </project>

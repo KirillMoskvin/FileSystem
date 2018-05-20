@@ -295,4 +295,3 @@ function copyFileQuery() {
         $("#move-copy-button").hide();
     })
 }
-

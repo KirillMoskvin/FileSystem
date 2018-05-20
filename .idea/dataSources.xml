@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="users@localhost" uuid="9b9d4563-dd84-4fd0-b36c-379a05bd7163">
-      <driver-ref>mysql</driver-ref>
+    <data-source source="LOCAL" name="userdb" uuid="a0bcbad1-3403-4c76-9c0b-df76e4cda26d">
+      <driver-ref>h2.unified</driver-ref>
       <synchronize>true</synchronize>
-      <remarks>1</remarks>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/users</jdbc-url>
-      <default-dialect>MySQL</default-dialect>
-      <driver-properties>
-        <property name="autoReconnect" value="true" />
-        <property name="zeroDateTimeBehavior" value="convertToNull" />
-        <property name="tinyInt1isBit" value="false" />
-        <property name="characterEncoding" value="utf8" />
-        <property name="characterSetResults" value="utf8" />
-        <property name="yearIsDateType" value="false" />
-      </driver-properties>
+      <jdbc-driver>org.h2.Driver</jdbc-driver>
+      <jdbc-url>jdbc:h2:file:~/h2/userdb</jdbc-url>
     </data-source>
   </component>
 </project>

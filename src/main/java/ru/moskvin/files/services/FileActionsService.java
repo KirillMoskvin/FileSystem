@@ -1,15 +1,11 @@
-package ru.moskvin.files.Services;
+package ru.moskvin.files.services;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.util.FileSystemUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.*;
-
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class FileActionsService {
     //удаление
