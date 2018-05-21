@@ -2,41 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2e8a1cb-9453-4d04-8c08-2d95249bcce0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/configs/WebConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/persistence/H2Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9b9d4563-dd84-4fd0-b36c-379a05bd7163.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/Services/FileActionsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/services/FileActionsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/Services/SecurityService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/Services/SecurityServiceImplementation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/Services/UserDetailsServiceImplementation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/Services/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/Services/UserServiceImplementation.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/configs/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/configs/WebSecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/models/Role.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/models/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/persistence/RoleRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/moskvin/files/persistence/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/moskvin/files/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/moskvin/files/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/moskvin/files/Services/FileActionsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/moskvin/files/Services/FileActionsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/moskvin/files/Services/SecurityService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/moskvin/files/Services/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/moskvin/files/configs/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/moskvin/files/configs/WebSecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/moskvin/files/controllers/FileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/moskvin/files/controllers/FileController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/moskvin/files/models/FileModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/moskvin/files/models/FileModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/moskvin/files/models/Role.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/moskvin/files/models/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/moskvin/files/controllers/FileController.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -76,13 +46,63 @@
       <file leaf-file-name="FileController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="649">
-              <caret line="117" column="20" selection-start-line="117" selection-start-column="20" selection-end-line="117" selection-end-column="20" />
+            <state relative-caret-position="411">
+              <caret line="139" lean-forward="true" selection-start-line="139" selection-end-line="139" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4886#4887#0" expanded="true" />
-                <element signature="e#4912#4913#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileActionsService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/services/FileActionsService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="522">
+              <caret line="58" column="5" lean-forward="true" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="488">
+              <caret line="84" column="79" selection-start-line="84" selection-start-column="79" selection-end-line="84" selection-end-column="79" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="124" column="52" selection-start-line="124" selection-start-column="52" selection-end-line="124" selection-end-column="52" />
+              <folding>
+                <element signature="n#!!block;n#convertFileSize#0" />
+                <element signature="n#!!block;n#getTextFromFile#0" />
+                <element signature="n#!!block;n#getFilesFromDir#0" />
+                <element signature="n#!!block;n#getFilesFromDirectory#0" />
+                <element signature="n#!!block;n#changeBackVisibility#0" />
+                <element signature="n#!!block;n#goBack#0" />
+                <element signature="n#!!block;n#pathBack#0" />
+                <element signature="n#!!block;n#deleteFileQuery#0" />
+                <element signature="n#!!block;n#renameFileQuery#0" />
+                <element signature="n#!!block;n#moveFileQuery#0" />
+                <element signature="n#!!block;n#copyFileQuery#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InvocableHandlerMethod.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.6.RELEASE/spring-web-5.0.6.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="290">
+              <caret line="34" column="94" selection-start-line="34" selection-start-column="94" selection-end-line="34" selection-end-column="94" />
             </state>
           </provider>
         </entry>
@@ -90,8 +110,8 @@
       <file leaf-file-name="WebSecurityConfig.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/configs/WebSecurityConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+            <state relative-caret-position="323">
+              <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -102,7 +122,7 @@
       <file leaf-file-name="WebConfiguration.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/configs/WebConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
+            <state relative-caret-position="442">
               <caret line="26" selection-start-line="26" selection-end-line="26" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -175,7 +195,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/models/FilesModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/models/TextFileModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/Services/FileActionsService.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/style.css" />
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/models/UserField.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/persistence/UserDao.java" />
@@ -187,7 +206,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/Services/SecurityServiceImplementation.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/Services/UserDetailsServiceImplementation.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/Services/UserServiceImplementation.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/index.js" />
         <option value="$PROJECT_DIR$/src/main/resources/views/login.html" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/persistence/UserRepository.java" />
@@ -201,8 +219,10 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/models/Role.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/services/UserServiceImplementation.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/services/SecurityServiceImplementation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/configs/WebSecurityConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/persistence/H2Dao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/configs/WebSecurityConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/index.js" />
         <option value="$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileController.java" />
       </list>
     </option>
@@ -232,7 +252,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -251,6 +271,11 @@
             <path>
               <item name="FileSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="FileSystem" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FileSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FileSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="rootDir" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FileSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -361,6 +386,14 @@
             </path>
             <path>
               <item name="FileSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FileSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FileSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
             </path>
           </expand>
@@ -373,7 +406,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/Java Projects/FileSystem/config.cfg" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/Java Projects/FileSystem/src/main/java/ru/moskvin/files/controllers/FileController.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="H2&#10;MySQL" />
@@ -521,7 +554,7 @@
       <workItem from="1526405856126" duration="1578000" />
       <workItem from="1526679530956" duration="6955000" />
       <workItem from="1526925983564" duration="19562000" />
-      <workItem from="1526973490231" duration="994000" />
+      <workItem from="1526973490231" duration="6088000" />
     </task>
     <servers />
   </component>
@@ -537,7 +570,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="215539000" />
+    <option name="totallyTimeSpent" value="220633000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -549,7 +582,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -558,21 +591,22 @@
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Designer" order="4" />
-      <window_info anchor="right" id="Database" order="7" visible="true" weight="0.053610504" />
+      <window_info anchor="right" id="Database" order="7" visible="true" weight="0.026119404" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="5" />
-      <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.8308977" weight="0.39542484" />
+      <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.8308977" weight="0.38943896" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.210121" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.45824635" weight="0.31808278" />
       <window_info anchor="right" id="Palette&#9;" order="9" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="14" weight="0.32893288" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49781182" weight="0.32893288" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.3938731" weight="0.251634" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.3938731" visible="true" weight="0.24945533" />
       <window_info anchor="bottom" id="Spring" order="12" weight="0.32893288" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.33113313" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31728664" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2196162" />
       <window_info anchor="right" id="Bean Validation" order="8" />
       <window_info id="Web" order="3" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="5" />
@@ -582,7 +616,6 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="SQL Generator" order="1" weight="0.32893288" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.45824635" weight="0.31808278" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="2" sideWeight="0.49940687" weight="0.3278867" />
@@ -624,31 +657,17 @@
           <properties />
           <option name="timeStamp" value="77" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileController.java</url>
+          <line>125</line>
+          <properties />
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="79" />
+      <option name="time" value="80" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/configs/WebSecurityConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/configs/WebConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1870">
@@ -787,13 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/services/FileActionsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="745">
-          <caret line="63" column="1" selection-start-line="63" selection-start-column="1" selection-end-line="63" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/services/UserDetailsServiceImplementation.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/services/UserService.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/ExceptionController.java">
@@ -807,20 +819,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="68" column="20" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -889,27 +887,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/services/UserServiceImplementation.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/services/SecurityServiceImplementation.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/services/SecurityService.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/configs/WebConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/persistence/UserRepository.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/configs/WebSecurityConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/persistence/H2Dao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -920,14 +898,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/configs/WebConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="649">
-          <caret line="117" column="20" selection-start-line="117" selection-start-column="20" selection-end-line="117" selection-end-column="20" />
+        <state relative-caret-position="442">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4886#4887#0" expanded="true" />
-            <element signature="e#4912#4913#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.6.RELEASE/spring-web-5.0.6.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="34" column="94" selection-start-line="34" selection-start-column="94" selection-end-line="34" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/5.0.5.RELEASE/spring-security-web-5.0.5.RELEASE.jar!/org/springframework/security/web/util/OnCommittedResponseWrapper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="31" column="91" selection-start-line="31" selection-start-column="91" selection-end-line="31" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/configs/WebSecurityConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="84" column="79" selection-start-line="84" selection-start-column="79" selection-end-line="84" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="124" column="52" selection-start-line="124" selection-start-column="52" selection-end-line="124" selection-end-column="52" />
+          <folding>
+            <element signature="n#!!block;n#convertFileSize#0" />
+            <element signature="n#!!block;n#getTextFromFile#0" />
+            <element signature="n#!!block;n#getFilesFromDir#0" />
+            <element signature="n#!!block;n#getFilesFromDirectory#0" />
+            <element signature="n#!!block;n#changeBackVisibility#0" />
+            <element signature="n#!!block;n#goBack#0" />
+            <element signature="n#!!block;n#pathBack#0" />
+            <element signature="n#!!block;n#deleteFileQuery#0" />
+            <element signature="n#!!block;n#renameFileQuery#0" />
+            <element signature="n#!!block;n#moveFileQuery#0" />
+            <element signature="n#!!block;n#copyFileQuery#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/services/FileActionsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="58" column="5" lean-forward="true" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/moskvin/files/controllers/FileController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="139" lean-forward="true" selection-start-line="139" selection-end-line="139" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

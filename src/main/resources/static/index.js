@@ -2,6 +2,8 @@ var currentDir = "";
 var initDir = "";
 var chosenFile = "";
 
+var serverUrl = "http://localhost:8080"
+
 $(document).ready(function () {
 
     getInitialData();
@@ -12,6 +14,14 @@ $(document).ready(function () {
         this.modal('hide');
     });
     $("#move-copy-button").hide();
+
+    $.ajax({
+        url: "http://localhost:8080/download",
+        type: 'GET'
+    }).then(function (data) {
+
+        console.log(data);
+    });
 });
 
 function getInitialData() {
@@ -111,6 +121,8 @@ function fillData(data) {
         rows += "<a class='btn btn-primary renameFileButton'>Rename</a>" +
             "<a class='btn btn-primary moveFileButton'>Move</a>" +
             "<a class='btn btn-primary copyFileButton'>Copy</a>" +
+            (data.files[index].directory? "" : "<a class='btn btn-primary moveFileButton' href='" +serverUrl+"/download/" +
+                data.files[index].absolutePath + "'> Download</a>") +
             "<a class='btn btn-danger btn-ok deleteFileButton'>Delete</a>";
         rows += "</td></tr>"
     });

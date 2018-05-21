@@ -4,8 +4,11 @@ import java.io.*;
 import java.net.URLDecoder;
 import java.nio.file.*;
 
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +16,9 @@ import ru.moskvin.files.services.FileActionsService;
 import ru.moskvin.files.models.*;
 import ru.moskvin.files.persistence.H2Dao;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class FileController {
@@ -24,7 +29,8 @@ public class FileController {
     private static Path rootPath;
     @Autowired
     private H2Dao h2Dao;
-
+    @Autowired
+    private ServletContext servletContext;
 
     public FileController() throws IOException {
         rootPath = init();
@@ -90,7 +96,7 @@ public class FileController {
         //достаём путь из запроса
         String path = new AntPathMatcher().extractPathWithinPattern("/files/**", request.getRequestURI());
         path = URLDecoder.decode(path, "UTF-8");
-
+        //выбираем действие в зависимости от параметра action
         if (checkAccess(path)) {
             String action = requestModel.getAction();
             if (action == null)
@@ -114,8 +120,29 @@ public class FileController {
     }
 
     @RequestMapping(value = "/download/**", method = RequestMethod.GET)
-    public ResponseEntity<InputStreamResource> downloadFile(@RequestParam String fileName){
-        return null;
+    public ResponseEntity<InputStreamResource> downloadFile(HttpServletRequest request,
+                                                            HttpServletResponse response) throws IOException {
+
+        String path = new AntPathMatcher().extractPathWithinPattern("/files/**", request.getRequestURI());
+        path = URLDecoder.decode(path, "UTF-8");
+        File file = new File(path);
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+
+        String type = servletContext.getMimeType(path);
+        //находим тип файла
+        MediaType mediaType;
+        try{
+            mediaType = MediaType.parseMediaType(type);
+        }
+        catch (Exception e){
+            mediaType = MediaType.APPLICATION_OCTET_STREAM;
+        }
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + file.getName())
+                .contentType(mediaType)
+                .contentLength(file.length())
+                .body(resource);
     }
 
     //проверка, ведёт ли файл в нашу файловую систему
