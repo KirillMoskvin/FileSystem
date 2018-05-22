@@ -27,3 +27,8 @@
     overflow-y: auto;
 }
 
+.alert{
+    display: none;
+    position: absolute;
+    z-index: 10;
+}

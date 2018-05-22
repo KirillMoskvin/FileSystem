@@ -15,24 +15,20 @@ $(document).ready(function () {
     });
     $("#move-copy-button").hide();
 
-    $.ajax({
-        url: "http://localhost:8080/download",
-        type: 'GET'
-    }).then(function (data) {
 
-        console.log(data);
-    });
 });
 
 function getInitialData() {
+    $(".alert").show().delay(3000).fadeOut();
     $.ajax({
-        url: "http://localhost:8080/showall",
+        url: serverUrl + "/showall",
         type: 'GET'
     }).then(function (data) {
         fillData(data);
         initDir = currentDir;
         changeBackVisibility();
         $(".backButton").click(goBack);
+        $(".alert").hide();
     });
 }
 
@@ -54,9 +50,8 @@ function convertFileSize(bytes) {
 //запрос текста из файла
 function getTextFromFile() {
     var filename = this.parentElement.getAttribute("value");
-    //console.log(filename);
     var options = {"fileName": filename};
-    //   console.log(options);
+    $(".alert").show().delay(3000).fadeOut();
     $.ajax({
         url: "http://localhost:8080/gettextfromfile",
         type: "GET",
@@ -77,6 +72,8 @@ function getTextFromFile() {
 
 //запрос файлов из директории
 function getFilesFromDir() {
+    console.log(this);
+    console.log(this.parentElement);
     var filename = this.getAttribute("value");
     console.log(filename);
     getFilesFromDirectory(filename);
@@ -84,8 +81,8 @@ function getFilesFromDir() {
 
 //запрос файлов из директории
 function getFilesFromDirectory(filename) {
-    //var dataToSend = {"filePath": filename}
-    var addr = "http://localhost:8080/files/" + filename;
+    $(".alert").show().delay(3000).fadeOut();
+    var addr = serverUrl + "/files/" + filename;
     console.log(filename);
     $.ajax({
         url: addr,
@@ -107,8 +104,8 @@ function fillData(data) {
     var rows = "";
     //заполнение данных о файлах
     $.each(data.files, function (index, obj) {
-        rows += "<tr><td> " +
-            (data.files[index].directory ? "yes" : "no") + "</td><td " +
+        rows += "<tr><td><img src='/icons" +
+            (data.files[index].directory ? "/folder.png" : (data.files[index].text ? "/textfile.png" : "/file.png")) + "'></td><td " +
 
             (data.files[index].directory ? " class='directory' value='" + data.files[index].absolutePath + "'" : "") +
             ">" + data.files[index].name + "</td>" +
@@ -121,7 +118,7 @@ function fillData(data) {
         rows += "<a class='btn btn-primary renameFileButton'>Rename</a>" +
             "<a class='btn btn-primary moveFileButton'>Move</a>" +
             "<a class='btn btn-primary copyFileButton'>Copy</a>" +
-            (data.files[index].directory? "" : "<a class='btn btn-primary moveFileButton' href='" +serverUrl+"/download/" +
+            (data.files[index].directory ? "" : "<a class='btn btn-primary moveFileButton' href='" + serverUrl + "/download/" +
                 data.files[index].absolutePath + "'> Download</a>") +
             "<a class='btn btn-danger btn-ok deleteFileButton'>Delete</a>";
         rows += "</td></tr>"
@@ -164,7 +161,6 @@ function fillData(data) {
     for (var i = 0; i < listDirs.length; i++) {
         listDirs[i].onclick = getFilesFromDir;
     }
-
 };
 
 //видимость кнопки "назад"
@@ -179,10 +175,9 @@ function changeBackVisibility() {
 
 //назад на одну директорию
 function goBack() {
-    //console.log(currentDir+"\\..");
-    //var dataToSend = {"filePath": pathBack(currentDir)};
+    $(".alert").show().delay(3000).fadeOut();
     $.ajax({
-        url: "http://localhost:8080/files/" + pathBack(currentDir),
+        url: serverUrl + "/files/" + pathBack(currentDir),
         type: 'GET',
         //data: dataToSend,
 
@@ -208,9 +203,8 @@ function deleteFileQuery() {
     //устанавливаем новый обработчик клика
     $('#confirm-delete .btn-danger').replaceWith($('#confirm-delete .btn-danger').clone());
     $('#confirm-delete .btn-danger').on('click', function () {
-
-            //console.log(filename);
             var addr = "http://localhost:8080/files/" + filename;
+            $(".alert").show().delay(3000).fadeOut();
             $.ajax({
                 url: addr,
                 type: 'DELETE',
@@ -234,8 +228,9 @@ function renameFileQuery() {
     $('#renameFile .renameButton').replaceWith($('#renameFile .renameButton').clone());
     $('#renameFile .renameButton').on('click', function () {
         console.log($('#file-name').val());
-        var addr = "http://localhost:8080/files/" + filename;
+        var addr = serverUrl + "/files/" + filename;
         var newName = $('#file-name').val();
+        $(".alert").show().delay(3000).fadeOut();
         $.ajax({
             url: addr,
             type: 'POST',
@@ -263,8 +258,9 @@ function moveFileQuery() {
     $("#move-copy-button").show();
     $('#move-copy-button').replaceWith($('#move-copy-button').clone()); //чтобы очистить обработчики
     $("#move-copy-button").on("click", function () {
-        var addr = "http://localhost:8080/files/" + chosenFile;
+        var addr = serverUrl+"/files/" + chosenFile;
         var path = currentDir;
+        $(".alert").show().delay(3000).fadeOut();
         $.ajax({
             url: addr,
             type: 'POST',
@@ -289,8 +285,9 @@ function copyFileQuery() {
     $("#move-copy-button").show();
     $('#move-copy-button').replaceWith($('#move-copy-button').clone()); //чтобы очистить обработчики
     $("#move-copy-button").on("click", function () {
-        var addr = "http://localhost:8080/files/" + chosenFile;
+        var addr = serverUrl+"/files/" + chosenFile;
         var path = currentDir;
+        $(".alert").show().delay(3000).fadeOut();
         $.ajax({
             url: addr,
             type: 'POST',

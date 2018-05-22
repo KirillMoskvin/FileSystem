@@ -26,15 +26,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-               .anyRequest().permitAll()
-               // .anyRequest().authenticated()
+                .anyRequest().permitAll()
+                // .anyRequest().authenticated()
                 .antMatchers("/", "/files/**").hasRole("USER")
                 .and()
                 .formLogin()
-                    .permitAll()
+                .permitAll()
                 .and()
                 .logout().permitAll()
-                ;
+        ;
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }

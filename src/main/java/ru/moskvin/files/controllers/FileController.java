@@ -1,10 +1,5 @@
 package ru.moskvin.files.controllers;
 
-import java.io.*;
-import java.net.URLDecoder;
-import java.nio.file.*;
-
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -12,13 +7,20 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.bind.annotation.*;
-import ru.moskvin.files.services.FileActionsService;
-import ru.moskvin.files.models.*;
+import ru.moskvin.files.models.FileActionRequestModel;
+import ru.moskvin.files.models.FilesModel;
+import ru.moskvin.files.models.TextFileModel;
 import ru.moskvin.files.persistence.H2Dao;
+import ru.moskvin.files.services.FileActionsService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.net.URLDecoder;
+import java.nio.file.AccessDeniedException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @RestController
 public class FileController {
@@ -131,10 +133,9 @@ public class FileController {
         String type = servletContext.getMimeType(path);
         //находим тип файла
         MediaType mediaType;
-        try{
+        try {
             mediaType = MediaType.parseMediaType(type);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             mediaType = MediaType.APPLICATION_OCTET_STREAM;
         }
 

@@ -13,21 +13,29 @@
 
 <body>
 <div>
-   <table class="files table table-sm  table-dark table-hover">
+    <!--Оповещение о том, что запрос находится в обработке-->
+    <div class="alert alert-info alert-dismissible fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Your request is in process, please wait
+    </div>
+
+   <table class="files table table-sm table-dark table-hover">
         <thead>
             <tr>
-                <th>IsDir</th>
+                <th></th>
                 <th>Name</th>
                 <th>Size</th>
                 <th>Created</th>
                 <th>Modified</th>
-                <th colspan="4">Actions</th>
+                <th colspan="4"></th>
             </tr>
         </thead>
         <tbody>
         </tbody>
    </table>
    <button class="backButton btn btn-primary">back</button>
+
+
 
     <!--Окно для показа текста файла-->
     <div class="modal fade" id="modalText" tabindex="-1" role="dialog" aria-hidden="true">
@@ -81,8 +89,6 @@
     </div>
     <button class="btn btn-primary" id="move-copy-button">Q</button>
 
-
-    <button id="download"><a href="http://localhost:8080/download">Download</a></button>
 </div>
 </body>
 </html>

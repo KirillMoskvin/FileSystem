@@ -1,9 +1,7 @@
 package ru.moskvin.files.configs;
 
 import org.springframework.boot.web.servlet.ServletContextInitializer;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
