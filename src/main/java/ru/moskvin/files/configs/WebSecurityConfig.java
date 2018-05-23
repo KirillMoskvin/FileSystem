@@ -6,10 +6,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 import ru.moskvin.files.persistence.H2Dao;
 
 @Configuration
@@ -26,8 +29,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .anyRequest().permitAll()
-                // .anyRequest().authenticated()
+                //.anyRequest().permitAll()
+                .anyRequest().authenticated()
                 .antMatchers("/", "/files/**").hasRole("USER")
                 .and()
                 .formLogin()
@@ -60,5 +63,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         JdbcUserDetailsManager manager = new JdbcUserDetailsManager();
         manager.setJdbcTemplate(jdbcTemplate);
         return manager;
+    }
+
+    @Bean
+    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
+        StrictHttpFirewall firewall = new StrictHttpFirewall();
+        firewall.setAllowUrlEncodedSlash(true);
+        return firewall;
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        super.configure(web);
+        web.httpFirewall(allowUrlEncodedSlashHttpFirewall());
     }
 }

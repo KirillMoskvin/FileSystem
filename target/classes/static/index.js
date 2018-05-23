@@ -14,6 +14,9 @@ $(document).ready(function () {
         this.modal('hide');
     });
     $("#move-copy-button").hide();
+    $("#renameFile .closeBtn").on('click', function () {
+        $('#file-name').val("");
+    })
 
 
 });
@@ -53,11 +56,12 @@ function getTextFromFile() {
     var options = {"fileName": filename};
     $(".alert").show().delay(3000).fadeOut();
     $.ajax({
-        url: "http://localhost:8080/gettextfromfile",
+        url: serverUrl+"/gettextfromfile",
         type: "GET",
         data: options,
         error: function (error) {
             console.log(error);
+            $(".alert").hide();
         }
     }).then(function (value) {
         console.log(value);
@@ -67,6 +71,7 @@ function getTextFromFile() {
         document.querySelector('#modalText .modal-title').innerText = value.name;
         console.log(value);
         $('#modalText').modal('show');
+        $(".alert").hide();
     })
 }
 
@@ -183,10 +188,12 @@ function goBack() {
 
         error: function (error) {
             console.log(error);
+            $(".alert").hide();
         }
     }).then(function (data) {
         fillData(data);
         changeBackVisibility();
+        $(".alert").hide();
     });
 }
 
@@ -209,12 +216,14 @@ function deleteFileQuery() {
                 url: addr,
                 type: 'DELETE',
                 error: function (data) {
-                    alert(data);
+                    console.log(data);
+                    $(".alert").hide();
                 }
             }).then(function (value) {
                 alert(value);
                 if (value == "Success")
                     getInitialData();
+                $(".alert").hide();
             })
             $('#confirm-delete').modal('hide');
         }
@@ -246,7 +255,7 @@ function renameFileQuery() {
                 getInitialData();
         })
 
-
+        $('#file-name').val("");
         $('#renameFile').modal('hide');
     })
 }
@@ -268,11 +277,13 @@ function moveFileQuery() {
             data: JSON.stringify({"action": "move", "path": currentDir}),
             error: function (data) {
                 console.log(data);
+                $(".alert").hide();
             }
         }).then(function (value) {
             alert(value);
             if (value == "Success")
                 getFilesFromDirectory(currentDir);
+            $(".alert").hide();
         })
         $("#move-copy-button").hide();
     })
@@ -295,11 +306,13 @@ function copyFileQuery() {
             data: JSON.stringify({"action": "copy", "path": currentDir}),
             error: function (data) {
                 console.log(data);
+                $(".alert").hide();
             }
         }).then(function (value) {
             alert(value);
             if (value == "Success")
                 getFilesFromDirectory(currentDir);
+            $(".alert").hide();
         })
         $("#move-copy-button").hide();
     })
